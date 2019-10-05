@@ -1,0 +1,11 @@
+name: 'Android Test Report Action'
+description: 'GitHub Action that prints Android test reports'
+author: 'Asad Mansoor'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+branding:
+  icon: 'file-text'
+  color: 'red'
