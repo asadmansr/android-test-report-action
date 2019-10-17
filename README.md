@@ -1,3 +1,7 @@
+![marketplace](https://img.shields.io/badge/Marketplace-v1.0.0-success)
+
+[marketplace]: https://github.com/marketplace/actions/android-test-report-action
+
 # Android Test Report Action
 GitHub Action that prints Android test xml reports.
 
