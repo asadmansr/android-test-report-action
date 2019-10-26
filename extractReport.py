@@ -1,4 +1,5 @@
 import sys
+import glob
 import xml.etree.ElementTree as ET
 
 SPACE_THRESHOLD = 16
@@ -23,6 +24,7 @@ def output_result(code):
     file.close() 
 
 def main():
+    #print(glob.glob('TEST-*.xml'))
     path = sys.argv[1]
     print(path + "\n")
     exit_code = parse_xml(path)
@@ -30,3 +32,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    sys.exit(1)
