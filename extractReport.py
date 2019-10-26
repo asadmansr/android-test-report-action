@@ -15,17 +15,18 @@ def parse_xml(xml_file):
         if key == 'failures' and int(value) > 0:
             exit_code = 1
     print("")
-    print("internal)")
-    print(exit_code)
     return exit_code
+
+def output_result(code):
+    file = open("android_test_report_action.txt", "w") 
+    file.write(code) 
+    file.close() 
 
 def main():
     path = sys.argv[1]
     print(path + "\n")
     exit_code = parse_xml(path)
-    print("exit codio:")
-    print(exit_code)
-    sys.exit(exit_code)
+    output_result(str(exit_code))
 
 if __name__ == "__main__":
     main()
