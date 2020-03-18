@@ -9,6 +9,10 @@ def parseXML(xmlfile):
         cs = len(k)
         sp = 16-cs
         print(k.capitalize() + " "*sp + v)
+        if ((k == "failures") and (int(v) > 0)) or ((k == "errors") and (int(v) > 0)):
+            f = open("extractReport_status.log", "w")
+            f.write("error")
+            f.close()
     print("")
 
 def main():
