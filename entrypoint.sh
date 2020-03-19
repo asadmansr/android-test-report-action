@@ -14,7 +14,7 @@ echo ''
 touch $log_file
 
 for i in `find . -name "TEST-*.xml" -type f`; do
-    python extractReport.py "$i"
+    python /usr/bin/extractReport.py "$i"
     echo ''
 done
 
