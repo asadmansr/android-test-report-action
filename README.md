@@ -32,7 +32,7 @@ jobs:
       continue-on-error: true # IMPORTANT: allow pipeline to continue to Android Test Report step
 
     - name: Android Test Report
-      uses: asadmansr/android-test-report-action@v1.1.0
+      uses: asadmansr/android-test-report-action@v1.2.0
 ```
 #### Note
 To use this Action, create a test job in the workflow. As a step, execute the unit test command using gradle. Make sure to include `continue-on-error` to prevent the job failing prior to displaying the error. Then, use the Android Test Report Action to display the reports. The Action will automatically pass or fail the job depending on the test results.
