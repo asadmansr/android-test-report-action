@@ -20,46 +20,48 @@ Add the following action to your GitHub Actions workflow.
 
 <br>
 
-## Basic Usage
+## Usage
 
-After executing the tests, the Android Test Report action parses all of the XML reports and outputs the results in a structured way.
+### Basic
+
+Once the test command has been executed, the Android Test Report action will parse all of the XML reports and output the results in a structured way.
 
 ```yml
 name: Android CI
 on: [push]
 
 jobs:
-  # Test job to run Android unit tests
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-    - name: set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
+      - name: set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
 
-    - name: Unit Test
-      run: ./gradlew testDebugUnitTest
-      continue-on-error: true # IMPORTANT: allow pipeline to continue to Android Test Report step
+      # Execute unit tests
+      - name: Unit Test
+        run: ./gradlew testDebugUnitTest
 
-    - name: Android Test Report
-      uses: asadmansr/android-test-report-action@v1.2.0
+      - name: Android Test Report
+        uses: asadmansr/android-test-report-action@v1.2.0
+        if: ${{ always() }} # IMPORTANT: run Android Test Report regardless
 ```
 #### Note
-The workflow must contain the unit test job prior to running the Android Test Report action. Make sure to include `continue-on-error: true` in the unit test step to prevent the job to fail before running the action. **The action will automatically pass or fail the job depending on the test results.**
+The workflow must contain the unit test job prior to running the Android Test Report action. **The action will automatically pass or fail the job depending on the test results.**
 
 <br>
 
-## Alternate Usage
+### Alternate
 
-If the basic usage fails to meet the requirement, such as avoiding to use `continue-on-error` or executing the test on a MacOS machine, consider the following example below.
+If the basic usage fails to meet your requirement (running on MacOS machine or anything else), split the test and report into two jobs. The test job will run the tests and save the reports as artifacts. The report job will use the Android Test Report action to parse and print the results. Consider the following example below.
 
 ```yml
 jobs:
   test:
-    runs-on: macos-latest
+    runs-on: macos-latest # or any other machine
     steps:
       ...
       - name: Unit Test
@@ -67,6 +69,7 @@ jobs:
 
       - name: Upload Test Reports Folder
         uses: actions/upload-artifact@v2
+        if: ${{ always() }} # IMPORTANT: Upload reports regardless of status
         with:
           name: reports
           path: app/build/test-results # path to where the xml test results are stored
@@ -74,6 +77,7 @@ jobs:
   report:
     runs-on: ubuntu-latest
     needs: test # The report job will run after test job
+    if: ${{ always() }} # IMPORTANT: Execute report job regardless of status
     steps:
       - name: Download Test Reports Folder
         uses: actions/download-artifact@v2
