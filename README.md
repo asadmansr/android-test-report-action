@@ -1,8 +1,5 @@
 # Android Test Report Action
 
-[![Release](https://img.shields.io/github/release/asadmansr/android-test-report-action.svg)](https://github.com/asadmansr/android-test-report-action/releases)
-[![Marketplace](https://img.shields.io/badge/GitHub-Marketplace-orange.svg)](https://github.com/marketplace/actions/android-test-report-action)
-
 GitHub Action that prints Android test xml reports.
 
 ![action](./images/promo.png)
@@ -46,7 +43,9 @@ jobs:
         run: ./gradlew testDebugUnitTest
 
       - name: Android Test Report
-        uses: asadmansr/android-test-report-action@v1.2.0
+        uses: devapro/android-test-report-action@v1.3
+        with:
+          onlyFailed: true
         if: ${{ always() }} # IMPORTANT: run Android Test Report regardless
 ```
 #### Note
@@ -57,6 +56,8 @@ The workflow must contain the unit test job prior to running the Android Test Re
 ### Alternate
 
 If the basic usage fails to meet your requirement (running on MacOS machine or anything else), split the test and report into two jobs. The test job will run the tests and save the reports as artifacts. The report job will use the Android Test Report action to parse and print the results. Consider the following example below.
+
+*If you need to add to report only failed test set onlyFailed = true*
 
 ```yml
 jobs:
@@ -85,7 +86,9 @@ jobs:
           name: reports
 
       - name: Android Test Report
-        uses: asadmansr/android-test-report-action@v1.2.0
+        uses: devapro/android-test-report-action@v1.3
+        with:
+          onlyFailed: true
 ```
 
 <br>
