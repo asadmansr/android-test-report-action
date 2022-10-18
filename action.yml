@@ -9,3 +9,9 @@ runs:
 branding:
   icon: 'file-text'
   color: 'red'
+  
+inputs:
+  onlyFailed:
+    description: 'Add to report only failed tests'
+    required: false
+    default: false
