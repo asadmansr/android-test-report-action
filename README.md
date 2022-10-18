@@ -1,5 +1,8 @@
 # Android Test Report Action
 
+[![Release](https://img.shields.io/github/release/asadmansr/android-test-report-action.svg)](https://github.com/asadmansr/android-test-report-action/releases)
+[![Marketplace](https://img.shields.io/badge/GitHub-Marketplace-orange.svg)](https://github.com/marketplace/actions/android-test-report-action)
+
 GitHub Action that prints Android test xml reports.
 
 ![action](./images/promo.png)
@@ -43,7 +46,7 @@ jobs:
         run: ./gradlew testDebugUnitTest
 
       - name: Android Test Report
-        uses: devapro/android-test-report-action@v1.3
+        uses: asadmansr/android-test-report-action@v1.2.0
         with:
           onlyFailed: true
         if: ${{ always() }} # IMPORTANT: run Android Test Report regardless
@@ -86,7 +89,7 @@ jobs:
           name: reports
 
       - name: Android Test Report
-        uses: devapro/android-test-report-action@v1.3
+        uses: asadmansr/android-test-report-action@v1.2.0
         with:
           onlyFailed: true
 ```
