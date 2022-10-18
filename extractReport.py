@@ -1,7 +1,7 @@
 import sys
 import xml.etree.ElementTree as ET
 
-def parseXML(xmlfile):
+def parseXML(xmlfile, onlyFailed):
     hasSeenFailure = False
     message = ""
     tree = ET.parse(xmlfile)
@@ -9,9 +9,10 @@ def parseXML(xmlfile):
     attributes = root.attrib
     
     for k,v in attributes.items():
-#         cs = len(k)
-#         sp = 16-cs
-#         print(k.capitalize() + " "*sp + v)
+        if (onlyFailed != "true")
+            cs = len(k)
+            sp = 16-cs
+            print(k.capitalize() + " "*sp + v)
         if ((k == "failures") and (int(v) > 0)) or ((k == "errors") and (int(v) > 0)):
             f = open("extractReport_status.log", "w")
             f.write("error")
@@ -44,8 +45,10 @@ def printFormatter(key, msg):
 
 def main():
     path = sys.argv[1]
+    onlyFailed = sys.argv[2]
+    print("Added only failed tests to report:" + onlyFailed + "\n")
     print(path + "\n")
-    parseXML(path)
+    parseXML(path, onlyFailed)
 
 if __name__ == "__main__":
     main()
