@@ -16,7 +16,7 @@ touch $log_file
 
 for i in `find . -name "TEST-*.xml" -type f`; do
     let num_files=num_files+1
-    python /usr/bin/extractReport.py "$i"
+    python /usr/bin/extractReport.py "$i" "$INPUT_ONLYFAILED"
     echo ''
 done
 
