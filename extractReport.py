@@ -9,7 +9,7 @@ def parseXML(xmlfile, onlyFailed):
     attributes = root.attrib
     
     for k,v in attributes.items():
-        if (onlyFailed != "true")
+        if (onlyFailed != "true"):
             cs = len(k)
             sp = 16-cs
             print(k.capitalize() + " "*sp + v)
@@ -46,7 +46,7 @@ def printFormatter(key, msg):
 def main():
     path = sys.argv[1]
     onlyFailed = sys.argv[2]
-    if (onlyFailed != "true")
+    if (onlyFailed != "true"):
         print(path + "\n")
     parseXML(path, onlyFailed)
 
