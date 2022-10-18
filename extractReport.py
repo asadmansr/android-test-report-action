@@ -46,8 +46,8 @@ def printFormatter(key, msg):
 def main():
     path = sys.argv[1]
     onlyFailed = sys.argv[2]
-    print("Added only failed tests to report:" + onlyFailed + "\n")
-    print(path + "\n")
+    if (onlyFailed != "true")
+        print(path + "\n")
     parseXML(path, onlyFailed)
 
 if __name__ == "__main__":
